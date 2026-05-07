@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Surat Pengantar RT/RW - Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+                padding: 0.5cm;
+            }
+            .no-print {
+                display: none;
+            }
+            .surat-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        .surat-content {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .uppercase-field {
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+
+<div class="max-w-4xl mx-auto">
+    <!-- Form Input Data -->
+    <div class="no-print bg-white rounded-lg shadow-lg p-6 mb-6">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">📝 Isi Data Surat</h2>
+        
+        <!-- Petunjuk Logo -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+            <p class="text-sm text-blue-800 font-semibold">📌 Pengaturan Logo:</p>
+            <p class="text-xs text-blue-700 mt-1">Logo disimpan di folder GitHub:</p>
+            <p class="text-xs text-blue-700 font-mono">• images/logo-kiri.png (Logo Pemerintah Kabupaten)</p>
+            <p class="text-xs text-blue-700 font-mono">• images/logo-kanan.png (Logo Perumahan/Desa)</p>
+            <p class="text-xs text-blue-700 mt-1">💡 Jika tidak punya logo, biarkan kosong — kop surat tetap rapi.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                <input type="text" id="nama" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="NAMA LENGKAP" style="text-transform: uppercase;">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">NIK / No. KTP</label>
+                <input type="text" id="nik" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="NIK">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
+                <select id="jk" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                    <option value="">-- Pilih --</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Tempat Lahir</label>
+                <input type="text" id="tempat" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="TEMPAT LAHIR" style="text-transform: uppercase;">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
+                <input type="date" id="tgl_lahir" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Kewarganegaraan</label>
+                <select id="wn" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                    <option value="INDONESIA">INDONESIA</option>
+                    <option value="WNA">WNA</option>
+                </select>
+            </div>
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700">Alamat KTP</label>
+                <input type="text" id="alamat_ktp" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="ALAMAT LENGKAP SESUAI KTP" style="text-transform: uppercase;">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Blok</label>
+                <input type="text" id="blok" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: A">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nomor Rumah</label>
+                <input type="text" id="no_rumah" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: 12">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nomor Surat (Opsional)</label>
+                <input type="text" id="noSurat" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: 001/RT/01/2026">
+            </div>
+        </div>
+        
+        <div class="mt-6 flex gap-3 flex-wrap">
+            <button onclick="updateSurat()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow transition">📄 Tampilkan ke Surat</button>
+            <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow transition">🖨️ Cetak / Print</button>
+            <button onclick="resetForm()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow transition">↺ Reset</button>
+        </div>
+    </div>
+
+    <!-- Template Surat -->
+    <div id="suratContainer" class="surat-container bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="surat-content p-8 md:p-12">
+            <!-- Kop Surat dengan Logo Kiri dan Kanan -->
+            <div class="border-b-2 border-black pb-4 mb-4">
+                <div class="flex justify-between items-center gap-4">
+                    <!-- Logo Kiri (dari file GitHub) -->
+                    <div id="logoKiriContainer" class="flex-shrink-0">
+                        <img id="logoKiriImg" src="images/logo-kiri.png" alt="Logo Pemerintah Kabupaten" class="h-20 w-auto object-contain" onerror="this.style.display='none'">
+                    </div>
+                    
+                    <!-- Teks Kop Tengah -->
+                    <div class="text-center flex-1">
+                        <div class="text-xl md:text-2xl font-bold uppercase tracking-wide">Pemerintah Kabupaten Tangerang</div>
+                        <div class="text-base md:text-lg font-semibold">Kecamatan Sepatan, Desa Pisangan Jaya</div>
+                        <div class="text-sm md:text-base">Perum Grand Permata Sepatan RT 008/10</div>
+                        <div class="text-xs text-gray-600 mt-1">Email: desapisanganjaya@example.com | Telp: (021) 12345678</div>
+                    </div>
+                    
+                    <!-- Logo Kanan (dari file GitHub) -->
+                    <div id="logoKananContainer" class="flex-shrink-0">
+                        <img id="logoKananImg" src="images/logo-kanan.png" alt="Logo Perumahan/Desa" class="h-20 w-auto object-contain" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-center text-xl font-bold uppercase mb-6">Surat Pengantar</h3>
+            
+            <div class="mb-2">
+                <span class="font-semibold">No:</span> 
+                <span id="noSuratDisplay" class="border-b border-black inline-block min-w-[200px]">________ / ________ / 20__</span>
+            </div>
+
+            <p class="mt-4 leading-relaxed">
+                Yang bertanda tangan di bawah ini selaku Ketua RT 008/10 dan Ketua RW setempat Perumahan Grand Permata Sepatan, Desa Pisangan Jaya dengan ini menerangkan bahwa :
+            </p>
+
+            <div class="mt-4 space-y-2">
+                <p><span class="font-semibold inline-block w-44">Nama lengkap</span> : <span id="nama_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
+                <p><span class="font-semibold inline-block w-44">NIK / No. KTP</span> : <span id="nik_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
+                <p><span class="font-semibold inline-block w-44">Jenis kelamin</span> : <span id="jk_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
+                <p><span class="font-semibold inline-block w-44">Tempat / tgl lahir</span> : <span id="ttl_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
+                <p><span class="font-semibold inline-block w-44">Kewarganegaraan</span> : <span id="wn_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
+                <p><span class="font-semibold inline-block w-44">Alamat kartu Identitas</span> : <span id="alamat_ktp_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
+            </div>
+
+            <p class="mt-6 leading-relaxed">
+                Adalah benar bahwa yang bersangkutan di atas adalah warga yang tinggal di lingkungan kami pada blok : 
+                <span id="blok_display" class="border-b border-black inline-block min-w-[60px] text-center">________</span> 
+                no : 
+                <span id="no_rumah_display" class="border-b border-black inline-block min-w-[60px] text-center">________</span>
+            </p>
+
+            <p class="mt-8 leading-relaxed">
+                Demikian surat keterangan ini dibuat dan dapat dipergunakan sebagaimana mestinya.
+            </p>
+
+            <!-- Tanda tangan RT dan RW bersebelahan -->
+            <div class="mt-12 grid grid-cols-2 gap-8 text-center">
+                <div>
+                    <p>Pisangan Jaya, <span id="tanggalSurat">________</span></p>
+                    <p class="mt-6">Ketua RT 008/10,</p>
+                    <div class="mt-12">
+                        <p class="font-semibold underline">(_____________________)</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="invisible">Pisangan Jaya, ________</p>
+                    <p class="mt-6">Ketua RW,</p>
+                    <div class="mt-12">
+                        <p class="font-semibold underline">(_____________________)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setTanggalOtomatis() {
+        const today = new Date();
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const formattedDate = today.toLocaleDateString('id-ID', options);
+        document.getElementById('tanggalSurat').innerText = formattedDate;
+    }
+    setTanggalOtomatis();
+
+    function updateSurat() {
+        let nama = document.getElementById('nama').value || '________';
+        let nik = document.getElementById('nik').value || '________';
+        let jk = document.getElementById('jk').value || '________';
+        let tempat = document.getElementById('tempat').value || '________';
+        let tgl = document.getElementById('tgl_lahir').value;
+        let ttl = tempat + ' / ' + (tgl ? tgl : '________');
+        let wn = document.getElementById('wn').value || '________';
+        let alamat_ktp = document.getElementById('alamat_ktp').value || '________';
+        let blok = document.getElementById('blok').value || '________';
+        let no_rumah = document.getElementById('no_rumah').value || '________';
+        let noSurat = document.getElementById('noSurat').value;
+
+        if (noSurat) {
+            document.getElementById('noSuratDisplay').innerText = noSurat;
+        } else {
+            document.getElementById('noSuratDisplay').innerHTML = '________ / ________ / 20__';
+        }
+
+        document.getElementById('nama_display').innerText = nama || '________';
+        document.getElementById('nik_display').innerText = nik;
+        document.getElementById('jk_display').innerText = jk;
+        document.getElementById('ttl_display').innerText = ttl;
+        document.getElementById('wn_display').innerText = wn;
+        document.getElementById('alamat_ktp_display').innerText = alamat_ktp;
+        document.getElementById('blok_display').innerText = blok;
+        document.getElementById('no_rumah_display').innerText = no_rumah;
+    }
+
+    function resetForm() {
+        document.getElementById('nama').value = '';
+        document.getElementById('nik').value = '';
+        document.getElementById('jk').value = '';
+        document.getElementById('tempat').value = '';
+        document.getElementById('tgl_lahir').value = '';
+        document.getElementById('wn').value = 'INDONESIA';
+        document.getElementById('alamat_ktp').value = '';
+        document.getElementById('blok').value = '';
+        document.getElementById('no_rumah').value = '';
+        document.getElementById('noSurat').value = '';
+        updateSurat();
+        setTanggalOtomatis();
+    }
+
+    updateSurat();
+</script>
+</body>
+</html>
