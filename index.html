@@ -82,7 +82,7 @@
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Blok</label>
-                <input type="text" id="blok" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: A" style="text-transform: uppercase;>
+                <input type="text" id="blok" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="Contoh: A" style="text-transform: uppercase;">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Nomor Rumah</label>
@@ -129,37 +129,41 @@
 
             <h3 class="text-center text-xl font-bold uppercase mb-6">Surat Pengantar</h3>
             
-            <div class="mb-2">
+            <!-- Nomor Surat di Tengah -->
+            <div class="text-center mb-6">
                 <span class="font-semibold">No:</span> 
-                <span id="noSuratDisplay" class="border-b border-black inline-block min-w-[200px]">________ / ________ / 20__</span>
+                <span id="noSuratDisplay" class="border-b border-black inline-block min-w-[250px] text-center">________ / ________ / 20__</span>
             </div>
-<div class="ml-8">
-            <p class="mt-4 leading-relaxed">
-                Yang bertanda tangan di bawah ini selaku Ketua RT 008/10 dan Ketua RW setempat Perumahan Grand Permata Sepatan, Desa Pisangan Jaya dengan ini menerangkan bahwa :
-            </p>
+            
+            <!-- Container untuk teks yang digeser ke kanan dan sejajar -->
+            <div class="ml-12">
+                <p class="mt-2 leading-relaxed">
+                    Yang bertanda tangan di bawah ini selaku Ketua RT 008/10 dan Ketua RW setempat Perumahan Grand Permata Sepatan, Desa Pisangan Jaya dengan ini menerangkan bahwa :
+                </p>
 
-            <div class="mt-4 space-y-2">
-                <p><span class="font-semibold inline-block w-44">Nama lengkap</span> : <span id="nama_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
-                <p><span class="font-semibold inline-block w-44">NIK / No. KTP</span> : <span id="nik_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
-                <p><span class="font-semibold inline-block w-44">Jenis kelamin</span> : <span id="jk_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
-                <p><span class="font-semibold inline-block w-44">Tempat / tgl lahir</span> : <span id="ttl_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
-                <p><span class="font-semibold inline-block w-44">Kewarganegaraan</span> : <span id="wn_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
-                <p><span class="font-semibold inline-block w-44">Alamat kartu Identitas</span> : <span id="alamat_ktp_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
+                <div class="mt-4 space-y-2">
+                    <p><span class="font-semibold inline-block w-44">Nama lengkap</span> : <span id="nama_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
+                    <p><span class="font-semibold inline-block w-44">NIK / No. KTP</span> : <span id="nik_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
+                    <p><span class="font-semibold inline-block w-44">Jenis kelamin</span> : <span id="jk_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
+                    <p><span class="font-semibold inline-block w-44">Tempat / tgl lahir</span> : <span id="ttl_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
+                    <p><span class="font-semibold inline-block w-44">Kewarganegaraan</span> : <span id="wn_display" class="border-b border-black inline-block min-w-[250px]">________</span></p>
+                    <p><span class="font-semibold inline-block w-44">Alamat kartu Identitas</span> : <span id="alamat_ktp_display" class="border-b border-black inline-block min-w-[250px] uppercase-field">________</span></p>
+                </div>
+
+                <p class="mt-6 leading-relaxed">
+                    Adalah benar bahwa yang bersangkutan di atas adalah warga yang tinggal di lingkungan kami pada blok : 
+                    <span id="blok_display" class="border-b border-black inline-block min-w-[60px] text-center uppercase-field">________</span> 
+                    no : 
+                    <span id="no_rumah_display" class="border-b border-black inline-block min-w-[60px] text-center">________</span>
+                </p>
+
+                <p class="mt-8 leading-relaxed">
+                    Demikian surat keterangan ini dibuat dan dapat dipergunakan sebagaimana mestinya.
+                </p>
             </div>
-
-            <p class="mt-6 leading-relaxed">
-                Adalah benar bahwa yang bersangkutan di atas adalah warga yang tinggal di lingkungan kami pada blok : 
-                <span id="blok_display" class="border-b border-black inline-block min-w-[60px] text-center">________</span> 
-                no : 
-                <span id="no_rumah_display" class="border-b border-black inline-block min-w-[60px] text-center">________</span>
-            </p>
-
-            <p class="mt-8 leading-relaxed">
-                Demikian surat keterangan ini dibuat dan dapat dipergunakan sebagaimana mestinya.
-            </p>
-</div>
-            <!-- Tanda tangan RT dan RW bersebelahan -->
-            <div class="mt-12 grid grid-cols-2 gap-8 text-center">
+            
+            <!-- Tanda tangan RT dan RW bersebelahan dengan margin sejajar -->
+            <div class="mt-12 grid grid-cols-2 gap-8 text-center ml-12">
                 <div>
                     <p>Pisangan Jaya, <span id="tanggalSurat">________</span></p>
                     <p class="mt-6">Ketua RT 008/10,</p>
