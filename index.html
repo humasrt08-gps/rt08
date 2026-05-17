@@ -2,40 +2,15 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template Surat Pengantar RT/RW - Ukuran A4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Template Surat Pengantar RT/RW - A4 Responsif</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Aturan untuk tampilan layar */
-        body {
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+        * {
+            -webkit-tap-highlight-color: transparent;
         }
-
-        /* Container surat dengan ukuran A4 */
-        .a4-container {
-            background: white;
-            width: 21cm;
-            min-height: 29.7cm;
-            margin: 0 auto;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* Isi surat dengan padding yang pas */
-        .surat-content {
-            padding: 1.5cm 1.8cm;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
-            line-height: 1.4;
-        }
-
-        /* Aturan untuk print */
+        
+        /* Aturan untuk ukuran A4 saat print */
         @media print {
             body {
                 background: white;
@@ -53,173 +28,235 @@
                 margin: 0;
             }
             .surat-content {
-                padding: 1.2cm 1.5cm;
+                padding: 1.2cm 1.5cm !important;
             }
             @page {
                 size: A4;
                 margin: 0;
             }
         }
-
+        
+        /* Tampilan layar HP */
+        @media screen and (max-width: 768px) {
+            .surat-content {
+                padding: 20px 16px !important;
+            }
+            .label-width {
+                width: 120px !important;
+                font-size: 13px !important;
+            }
+            .border-bottom-inline {
+                min-width: 160px !important;
+            }
+            .text-xl {
+                font-size: 1.2rem !important;
+            }
+            .text-base {
+                font-size: 0.9rem !important;
+            }
+            .text-sm {
+                font-size: 0.8rem !important;
+            }
+            h3 {
+                font-size: 1.1rem !important;
+            }
+            .gap-3 {
+                gap: 0.5rem !important;
+            }
+            .mt-8 {
+                margin-top: 1rem !important;
+            }
+            .mt-12 {
+                margin-top: 1.5rem !important;
+            }
+        }
+        
+        .surat-content {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.4;
+        }
+        
+        .a4-container {
+            background: white;
+            width: 100%;
+            max-width: 21cm;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
         .uppercase-field {
             text-transform: uppercase;
         }
+        
         .alamat-line {
             word-wrap: break-word;
             white-space: normal;
         }
-        .border-bottom-inline {
-            border-bottom: 1px solid black;
-            display: inline-block;
-            min-width: 280px;
-        }
+        
         .label-width {
             display: inline-block;
-            width: 170px;
+            width: 160px;
             font-weight: 600;
+            vertical-align: top;
         }
-        @media print {
-            .border-bottom-inline {
-                min-width: 280px;
-            }
+        
+        /* Style input untuk HP */
+        input, select, textarea {
+            font-size: 16px !important; /* Mencegah zoom otomatis di iOS */
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-100">
 
-<!-- Form Input Data (tidak terlihat saat print) -->
-<div class="no-print bg-white rounded-lg shadow-lg p-6 mb-6" style="width: 600px; position: fixed; top: 20px; right: 20px; z-index: 1000; max-height: 90vh; overflow-y: auto;">
-    <h2 class="text-xl font-bold mb-4 text-gray-800 border-b pb-2">📝 Isi Data Surat</h2>
+<div class="max-w-4xl mx-auto p-3 md:p-6">
     
-    <div class="grid grid-cols-1 gap-3">
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-            <input type="text" id="nama" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="NAMA LENGKAP" style="text-transform: uppercase;">
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">NIK / No. KTP</label>
-            <input type="text" id="nik" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="NIK">
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
-            <select id="jk" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                <option value="">-- Pilih --</option>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-            </select>
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Tempat Lahir</label>
-            <input type="text" id="tempat" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="TEMPAT LAHIR" style="text-transform: uppercase;">
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
-            <input type="date" id="tgl_lahir" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Kewarganegaraan</label>
-            <select id="wn" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
-                <option value="INDONESIA">INDONESIA</option>
-                <option value="WNA">WNA</option>
-            </select>
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Alamat KTP</label>
-            <textarea id="alamat_ktp" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="ALAMAT LENGKAP SESUAI KTP" style="text-transform: uppercase;"></textarea>
-        </div>
-        <div class="grid grid-cols-2 gap-3">
+    <!-- Form Input Data - Responsif untuk HP -->
+    <div class="no-print bg-white rounded-lg shadow-lg p-4 md:p-5 mb-4">
+        <h2 class="text-lg md:text-xl font-bold mb-3 text-gray-800 border-b pb-2">📝 Isi Data Surat</h2>
+        
+        <div class="space-y-3">
             <div>
-                <label class="block text-sm font-medium text-gray-700">Blok</label>
-                <input type="text" id="blok" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="Contoh: A" style="text-transform: uppercase;">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                <input type="text" id="nama" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="NAMA LENGKAP" style="text-transform: uppercase;">
             </div>
+            
             <div>
-                <label class="block text-sm font-medium text-gray-700">Nomor Rumah</label>
-                <input type="text" id="no_rumah" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: 12">
+                <label class="block text-sm font-medium text-gray-700 mb-1">NIK / No. KTP</label>
+                <input type="text" id="nik" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="NIK">
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin</label>
+                    <select id="jk" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                        <option value="">-- Pilih --</option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Kewarganegaraan</label>
+                    <select id="wn" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                        <option value="INDONESIA">INDONESIA</option>
+                        <option value="WNA">WNA</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tempat Lahir</label>
+                    <input type="text" id="tempat" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="TEMPAT" style="text-transform: uppercase;">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir</label>
+                    <input type="date" id="tgl_lahir" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Alamat KTP</label>
+                <textarea id="alamat_ktp" rows="2" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="ALAMAT LENGKAP" style="text-transform: uppercase;"></textarea>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Blok</label>
+                    <input type="text" id="blok" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border uppercase-field" placeholder="Contoh: A" style="text-transform: uppercase;">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Rumah</label>
+                    <input type="text" id="no_rumah" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: 12">
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Surat (Opsional)</label>
+                <input type="text" id="noSurat" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: 001/RT/01/2026">
             </div>
         </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Nomor Surat (Opsional)</label>
-            <input type="text" id="noSurat" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" placeholder="Contoh: 001/RT/01/2026">
+        
+        <div class="mt-4 flex gap-2 flex-wrap">
+            <button onclick="updateSurat()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">📄 Tampilkan</button>
+            <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">🖨️ Cetak PDF</button>
+            <button onclick="resetForm()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">↺ Reset</button>
         </div>
     </div>
-    
-    <div class="mt-4 flex gap-3 flex-wrap">
-        <button onclick="updateSurat()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">📄 Tampilkan</button>
-        <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">🖨️ Cetak PDF</button>
-        <button onclick="resetForm()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">↺ Reset</button>
-    </div>
-</div>
 
-<!-- Template Surat Ukuran A4 -->
-<div class="a4-container">
-    <div class="surat-content">
-        <!-- Kop Surat -->
-        <div class="border-b-2 border-black pb-3 mb-4 text-center">
-            <div class="flex justify-between items-center gap-3">
-                <div id="logoKiriContainer" class="flex-shrink-0">
-                    <img id="logoKiriImg" src="images/logo-kiri.png" alt="Logo" class="h-16 w-auto object-contain" onerror="this.style.display='none'">
-                </div>
-                <div class="text-center flex-1">
-                    <div class="text-xl font-bold uppercase">Pemerintah Kabupaten Tangerang</div>
-                    <div class="text-base font-semibold">Kecamatan Sepatan, Desa Pisangan Jaya</div>
-                    <div class="text-base">Perum Grand Permata Sepatan RT 008/10</div>
-                    <div class="text-sm text-gray-600 mt-1">Email: humasrt08@gmail.com</div>
-                </div>
-                <div id="logoKananContainer" class="flex-shrink-0">
-                    <img id="logoKananImg" src="images/logo-kanan.png" alt="Logo" class="h-16 w-auto object-contain" onerror="this.style.display='none'">
+    <!-- Template Surat Ukuran A4 -->
+    <div class="a4-container">
+        <div class="surat-content" style="padding: 1.2cm 1.5cm;">
+            <!-- Kop Surat -->
+            <div class="border-b-2 border-black pb-3 mb-4 text-center">
+                <div class="flex justify-between items-center gap-2 md:gap-3 flex-nowrap">
+                    <div id="logoKiriContainer" class="flex-shrink-0">
+                        <img id="logoKiriImg" src="images/logo-kiri.png" alt="Logo" class="h-12 md:h-16 w-auto object-contain" onerror="this.style.display='none'">
+                    </div>
+                    <div class="text-center flex-1">
+                        <div class="text-sm md:text-xl font-bold uppercase">Pemerintah Kab. Tangerang</div>
+                        <div class="text-xs md:text-base font-semibold">Kec. Sepatan, Ds. Pisangan Jaya</div>
+                        <div class="text-xs md:text-sm">Perum Grand Permata Sepatan RT 008/10</div>
+                        <div class="text-xs text-gray-600 hidden md:block">Email: humasrt08@gmail.com</div>
+                    </div>
+                    <div id="logoKananContainer" class="flex-shrink-0">
+                        <img id="logoKananImg" src="images/logo-kanan.png" alt="Logo" class="h-12 md:h-16 w-auto object-contain" onerror="this.style.display='none'">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <h3 class="text-center text-xl font-bold uppercase mb-5">Surat Pengantar</h3>
-        
-        <!-- Nomor Surat -->
-        <div class="text-center mb-5">
-            <span class="font-semibold">No:</span> 
-            <span id="noSuratDisplay" class="border-b border-black inline-block min-w-[280px] text-center">________ / ________ / 20__</span>
-        </div>
-        
-        <!-- Isi Surat -->
-        <div>
-            <p class="mb-3 text-justify">
-                Yang bertanda tangan di bawah ini selaku Ketua RT 008/10 dan Ketua RW setempat Perumahan Grand Permata Sepatan, Desa Pisangan Jaya dengan ini menerangkan bahwa :
-            </p>
-
-            <div class="mb-4 space-y-1">
-                <p><span class="label-width">Nama lengkap</span> : <span id="nama_display" class="border-b border-black inline-block min-w-[280px] uppercase-field">________</span></p>
-                <p><span class="label-width">NIK / No. KTP</span> : <span id="nik_display" class="border-b border-black inline-block min-w-[280px]">________</span></p>
-                <p><span class="label-width">Jenis kelamin</span> : <span id="jk_display" class="border-b border-black inline-block min-w-[280px]">________</span></p>
-                <p><span class="label-width">Tempat / tgl lahir</span> : <span id="ttl_display" class="border-b border-black inline-block min-w-[280px] uppercase-field">________</span></p>
-                <p><span class="label-width">Kewarganegaraan</span> : <span id="wn_display" class="border-b border-black inline-block min-w-[280px]">________</span></p>
-                <p><span class="label-width align-top">Alamat KTP</span> : <span id="alamat_ktp_display" class="border-b border-black inline-block min-w-[280px] uppercase-field alamat-line">________</span></p>
+            <h3 class="text-center font-bold uppercase mb-4 text-base md:text-xl">Surat Pengantar</h3>
+            
+            <!-- Nomor Surat -->
+            <div class="text-center mb-4">
+                <span class="font-semibold">No:</span> 
+                <span id="noSuratDisplay" class="border-b border-black inline-block min-w-[180px] md:min-w-[250px] text-center">________ / ________ / 20__</span>
             </div>
-
-            <p class="mb-4">
-                Adalah benar bahwa yang bersangkutan di atas adalah warga yang tinggal di lingkungan kami pada blok : 
-                <span id="blok_display" class="border-b border-black inline-block min-w-[70px] text-center uppercase-field">________</span> 
-                no : 
-                <span id="no_rumah_display" class="border-b border-black inline-block min-w-[70px] text-center">________</span>
-            </p>
-
-            <p class="mb-6">
-                Demikian surat keterangan ini dibuat dan dapat dipergunakan sebagaimana mestinya.
-            </p>
-        </div>
-        
-        <!-- Tanda tangan -->
-        <div class="mt-8 grid grid-cols-2 gap-8 text-center">
+            
+            <!-- Isi Surat -->
             <div>
-                <p>Pisangan Jaya, <span id="tanggalSurat">________</span></p>
-                <p class="mt-8">Ketua RT 008/10,</p>
-                <div class="mt-12">
-                    <p class="font-semibold underline">(Erwin Suherman)</p>
+                <p class="mb-3 text-sm md:text-base text-justify">
+                    Yang bertanda tangan di bawah ini selaku Ketua RT 008/10 dan Ketua RW setempat Perumahan Grand Permata Sepatan, Desa Pisangan Jaya dengan ini menerangkan bahwa :
+                </p>
+
+                <div class="mb-4 space-y-1 text-sm md:text-base">
+                    <p><span class="label-width">Nama lengkap</span> : <span id="nama_display" class="border-b border-black inline-block min-w-[160px] md:min-w-[260px] uppercase-field">________</span></p>
+                    <p><span class="label-width">NIK / No. KTP</span> : <span id="nik_display" class="border-b border-black inline-block min-w-[160px] md:min-w-[260px]">________</span></p>
+                    <p><span class="label-width">Jenis kelamin</span> : <span id="jk_display" class="border-b border-black inline-block min-w-[160px] md:min-w-[260px]">________</span></p>
+                    <p><span class="label-width">Tempat / tgl lahir</span> : <span id="ttl_display" class="border-b border-black inline-block min-w-[160px] md:min-w-[260px] uppercase-field">________</span></p>
+                    <p><span class="label-width">Kewarganegaraan</span> : <span id="wn_display" class="border-b border-black inline-block min-w-[160px] md:min-w-[260px]">________</span></p>
+                    <p><span class="label-width align-top">Alamat KTP</span> : <span id="alamat_ktp_display" class="border-b border-black inline-block min-w-[160px] md:min-w-[260px] uppercase-field alamat-line">________</span></p>
                 </div>
+
+                <p class="mb-4 text-sm md:text-base">
+                    Adalah benar bahwa yang bersangkutan di atas adalah warga yang tinggal di lingkungan kami pada blok : 
+                    <span id="blok_display" class="border-b border-black inline-block min-w-[50px] text-center uppercase-field">________</span> 
+                    no : 
+                    <span id="no_rumah_display" class="border-b border-black inline-block min-w-[50px] text-center">________</span>
+                </p>
+
+                <p class="mb-6 text-sm md:text-base">
+                    Demikian surat keterangan ini dibuat dan dapat dipergunakan sebagaimana mestinya.
+                </p>
             </div>
-            <div>
-                <p class="invisible">Pisangan Jaya, ________</p>
-                <p class="mt-8">Ketua RW 010,</p>
-                <div class="mt-12">
-                    <p class="font-semibold underline">(_____________________)</p>
+            
+            <!-- Tanda tangan -->
+            <div class="mt-6 md:mt-8 grid grid-cols-2 gap-4 md:gap-8 text-center">
+                <div>
+                    <p class="text-sm md:text-base">Pisangan Jaya, <span id="tanggalSurat">________</span></p>
+                    <p class="mt-4 md:mt-8 text-sm md:text-base">Ketua RT 008/10,</p>
+                    <div class="mt-6 md:mt-12">
+                        <p class="font-semibold underline text-sm md:text-base">(Erwin Suherman)</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="invisible text-sm md:text-base">Pisangan Jaya, ________</p>
+                    <p class="mt-4 md:mt-8 text-sm md:text-base">Ketua RW 010,</p>
+                    <div class="mt-6 md:mt-12">
+                        <p class="font-semibold underline text-sm md:text-base">(_____________________)</p>
+                    </div>
                 </div>
             </div>
         </div>
